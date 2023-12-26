@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>INICIO</title>
+    <link rel="stylesheet" type="text/css" href="mainHome.css">
+    <script>
+        function hideSections(sectionId) {
+            var sections = document.querySelectorAll('.section');
+            for (var i = 0; i < sections.length; i++) {
+                if (sections[i].id !== sectionId) {
+                    sections[i].style.display = 'none';
+                } else {
+                    var returnIcon = document.createElement('span');
+                    returnIcon.className = 'return-icon';
+                    returnIcon.innerHTML = '↩';
+                    returnIcon.onclick = function () {
+                        // Recargar la página al hacer clic en el ícono de retorno
+                        location.reload();
+                    };
+                    sections[i].appendChild(returnIcon);
+
+                    // Si la sección es "MUSCLE UPS", ocultar el párrafo y mostrar el texto inicial
+                    if (sectionId === 'muscleups') {
+                        var contentParagraph = sections[i].querySelector('p');
+                        if (contentParagraph) {
+                            contentParagraph.style.display = 'none';
+                        }
+                        var videoContainer = document.getElementById('muscle-ups-video-container');
+                        if (videoContainer) {
+                            videoContainer.style.display = 'none';
+                        }
+                        var videoOverlay = document.getElementById('video-overlay');
+                        if (videoOverlay) {
+                            videoOverlay.style.display = 'flex';
+                        }
+                    } else {
+                        // Si no estás en "MUSCLE UPS", ocultar el video y el texto inicial
+                        var videoContainer = document.getElementById('muscle-ups-video-container');
+                        if (videoContainer) {
+                            videoContainer.style.display = 'none';
+                        }
+                        var videoOverlay = document.getElementById('video-overlay');
+                        if (videoOverlay) {
+                            videoOverlay.style.display = 'none';
+                        }
+
+                        // Si la sección es "DIPS", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'dips') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>(40kgx5)</b></h3> <a class='play-video-link' href='#' onclick='playDipsVideo()'>Ver Video</a>";
+                            }
+                        } 
+                        // Si la sección es "PULL UPS", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'pullups') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>(15kgx6)</b></h3>";
+                            }
+                        } 
+                        // Si la sección es "SQUATS", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'squats') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>(65kgx8)</b></h3>";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function playDipsVideo() {
+            // Crear un nuevo elemento de video con la fuente "dips.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'dips.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+
+        function playMuscleUpsVideo() {
+            // Crear un nuevo elemento de video con la fuente "kipping-mu.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'kipping-mu.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1 class="title">INICIO</h1>
+
+    <div class="sections">
+        <div class="section section-blue" id="streetlifting" onclick="redirectToStreetlifting()">
+            <h2 style="color: black;">STREETLIFTING</h2>
+            <p style="color: black;">Contenido relacionado con Streetlifting...</p>
+        </div>
+
+        <script>
+            function redirectToStreetlifting() {
+                window.location.href = 'streetlifting.html';
+            }
+        </script>
+
+        <div class="section section-red" id="skills" onclick="redirectToSkills()">
+            <h2 style="color: black;">SKILLS</h2>
+            <p style="color: black;">Contenido relacionado con Skills...</p>
+        </div>
+
+        <script>
+            function redirectToSkills() {
+                window.location.href = 'skills.html';
+            }
+        </script>
+
+        <div class="section section-green" id="gimnasio" onclick="redirectGimnasio()">
+            <h2 style="color: black;">GIMNASIO</h2>
+            <p style="color: black;">Contenido relacionado con Gimnasio...</p>
+        </div>
+
+        <script>
+            function redirectGimnasio() {
+                window.location.href = 'gimnasio.html';
+            }
+        </script>
+    </div>
+
+    <div class="video-container" id="video-container">
+        <!-- Contenedor para el video de ".mp4" -->
+    </div>
+</body>
+
+</html>

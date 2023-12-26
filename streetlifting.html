@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>STREETLIFTING</title>
+    <link rel="stylesheet" type="text/css" href="mainStreetlifting.css">
+    <script>
+        function hideSections(sectionId) {
+            var sections = document.querySelectorAll('.section');
+            for (var i = 0; i < sections.length; i++) {
+                if (sections[i].id !== sectionId) {
+                    sections[i].style.display = 'none';
+                } else {
+                    var returnIcon = document.createElement('span');
+                    returnIcon.className = 'return-icon';
+                    returnIcon.innerHTML = '↩';
+                    returnIcon.onclick = function () {
+                        // Recargar la página al hacer clic en el ícono de retorno
+                        location.reload();
+                    };
+                    sections[i].appendChild(returnIcon);
+
+                    // Si la sección es "MUSCLE UPS", ocultar el párrafo y mostrar el texto inicial
+                    if (sectionId === 'muscleups') {
+                        var contentParagraph = sections[i].querySelector('p');
+                        if (contentParagraph) {
+                            contentParagraph.style.display = 'none';
+                        }
+                        var videoContainer = document.getElementById('muscle-ups-video-container');
+                        if (videoContainer) {
+                            videoContainer.style.display = 'none';
+                        }
+                        var videoOverlay = document.getElementById('video-overlay');
+                        if (videoOverlay) {
+                            videoOverlay.style.display = 'flex';
+                        }
+                    } else {
+                        // Si no estás en "MUSCLE UPS", ocultar el video y el texto inicial
+                        var videoContainer = document.getElementById('muscle-ups-video-container');
+                        if (videoContainer) {
+                            videoContainer.style.display = 'none';
+                        }
+                        var videoOverlay = document.getElementById('video-overlay');
+                        if (videoOverlay) {
+                            videoOverlay.style.display = 'none';
+                        }
+
+                        // Si la sección es "DIPS", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'dips') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>70kg @9</b></h3> <a class='play-video-link' href='#' onclick='playDipsVideo()'>Ver Video</a>";
+                            }
+                        } 
+                        // Si la sección es "PULL UPS", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'pullups') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>35kg</b></h3> <a class='play-video-link' href='#' onclick='playPullUpsVideo()'>Ver Video</a>";
+                            }
+                        } 
+                        // Si la sección es "SQUATS", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'squats') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>(80kgx6)</b></h3> <a class='play-video-link' href='#' onclick='playSquatsVideo()'>Ver Video</a>";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function playPullUpsVideo() {
+            // Crear un nuevo elemento de video con la fuente "pull-ups.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'pull-ups.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+
+        function playDipsVideo() {
+            // Crear un nuevo elemento de video con la fuente "dips.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'dips.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+
+        function playSquatsVideo() {
+            // Crear un nuevo elemento de video con la fuente "squat.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'squats.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+
+        function playMuscleUpsVideo() {
+            // Crear un nuevo elemento de video con la fuente "kipping-mu.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'kipping-mu.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1 class="title">STREETLIFTING</h1>
+
+    <div class="sections">
+        <div class="section section-blue" id="pullups" onclick="hideSections('pullups')">
+            <h2 style="color: black;">PULL UPS</h2>
+            <p style="color: black;">Contenido relacionado con Pull Ups...</p>
+        </div>
+
+        <div class="section section-red" id="dips" onclick="hideSections('dips')">
+            <h2 style="color: black;">DIPS</h2>
+            <p style="color: black;">Contenido relacionado con Dips...</p>
+        </div>
+
+        <div class="section section-green" id="squats" onclick="hideSections('squats')">
+            <h2 style="color: black;">SQUATS</h2>
+            <p style="color: black;">Contenido relacionado con Squats...</p>
+        </div>
+
+        <div class="section section-yellow" id="muscleups" onclick="hideSections('muscleups')">
+            <h2 style="color: black;">MUSCLE UPS</h2>
+            <!-- Por defecto, mostrar el contenido relacionado en la página principal -->
+            <p style="color: black;">Contenido relacionado con Muscle Ups...</p>
+            <div id="video-overlay">
+                <b><p id="video-overlay-text">Kipping Muscle Ups</p></b>
+                <p class="play-video-link" onclick="playMuscleUpsVideo()">Ver Video</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="comeback" onclick="redirectToHome()">
+        <button>↩</button>
+    </div>
+
+    <script>
+        function redirectToHome() {
+            window.location.href = 'home.html';
+        }
+    </script>
+
+    <div class="video-container" id="video-container">
+        <!-- Contenedor para el video de ".mp4" -->
+    </div>
+</body>
+
+</html>

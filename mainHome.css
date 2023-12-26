@@ -1,0 +1,85 @@
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.sections {
+    display: flex;
+    /* Cambiado de 'column' a 'row' para que los recuadros estén en línea */
+}
+
+.section {
+    position: relative;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 10px;
+    margin: 5px;
+    text-align: center;
+    transition: transform 0.5s;
+    cursor: pointer;
+}
+
+.section:hover {
+    transform: scale(1.05);
+}
+
+.section-blue {
+    background-color: lightblue;
+    color: black;
+}
+
+.section-red {
+    background-color: red;
+    color: black;
+}
+
+.section-green {
+    background-color: green;
+    color: black;
+}
+
+.section-yellow {
+    background-color: yellow;
+    color: black;
+}
+
+.section p {
+    color: black;
+}
+
+.return-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.video-container {
+    margin-top: 20px;
+    /* Agregado margen superior para separar el video del recuadro */
+}
+
+#video-overlay {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+}
+
+#video-overlay-text {
+    margin-bottom: 20px;
+}
+
+.play-video-link {
+    cursor: pointer;
+    color: blue !important; /* Asegurarse de que el color sea azul */
+    text-decoration: underline;
+}

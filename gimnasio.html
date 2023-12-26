@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>GIMNASIO</title>
+    <link rel="stylesheet" type="text/css" href="mainGimnasio.css">
+    <script>
+        function hideSections(sectionId) {
+            var sections = document.querySelectorAll('.section');
+            for (var i = 0; i < sections.length; i++) {
+                if (sections[i].id !== sectionId) {
+                    sections[i].style.display = 'none';
+                } else {
+                    var returnIcon = document.createElement('span');
+                    returnIcon.className = 'return-icon';
+                    returnIcon.innerHTML = '↩';
+                    returnIcon.onclick = function () {
+                        // Recargar la página al hacer clic en el ícono de retorno
+                        location.reload();
+                    };
+                    sections[i].appendChild(returnIcon);
+
+                    // Si la sección es "BICEPS", ocultar el párrafo y mostrar el texto inicial
+                    if (sectionId === 'biceps') {
+                        var contentParagraph = sections[i].querySelector('p');
+                        if (contentParagraph) {
+                            contentParagraph.style.display = 'none';
+                        }
+                        var videoContainer = document.getElementById('biceps-video-container');
+                        if (videoContainer) {
+                            videoContainer.style.display = 'none';
+                        }
+                        var videoOverlay = document.getElementById('video-overlay');
+                        if (videoOverlay) {
+                            videoOverlay.style.display = 'flex';
+                        }
+                    } else {
+                        // Si no estás en "BICEPS", ocultar el video y el texto inicial
+                        var videoContainer = document.getElementById('biceps-video-container');
+                        if (videoContainer) {
+                            videoContainer.style.display = 'none';
+                        }
+                        var videoOverlay = document.getElementById('video-overlay');
+                        if (videoOverlay) {
+                            videoOverlay.style.display = 'none';
+                        }
+
+                        // Si la sección es "PRESS MILITAR", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'press-militar') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>Aquí va mi record de Press Militar</b></h3> <a class='play-video-link' href='#' onclick='playPressMilitarVideo()'>Ver Video</a>";
+                            }
+                        } 
+                        // Si la sección es "PRESS BANCA", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'press-banca') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>90kg</b></h3>";
+                            }
+                        } 
+                        // Si la sección es "HIP THRUST", cambiar el contenido del párrafo y agregar un enlace
+                        if (sectionId === 'hip-thrust') {
+                            var contentParagraph = sections[i].querySelector('p');
+                            if (contentParagraph) {
+                                contentParagraph.innerHTML = "<h3><b>(75kgx8)</b></h3> <a class='play-video-link' href='#' onclick='playHipThrustVideo()'>Ver Video</a>";
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        function playPressMilitarVideo() {
+            // Crear un nuevo elemento de video con la fuente "press-militar.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'press-militar.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+
+                function playHipThrustVideo() {
+            // Crear un nuevo elemento de video con la fuente "hip-thrust.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'hip-thrust.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+
+        function playBicepsVideo() {
+            // Crear un nuevo elemento de video con la fuente "biceps.mp4"
+            var newVideo = document.createElement('video');
+            newVideo.width = '640';
+            newVideo.height = '360';
+            newVideo.controls = true;
+
+            var source = document.createElement('source');
+            source.src = 'biceps.mp4';
+            source.type = 'video/mp4';
+
+            newVideo.appendChild(source);
+
+            // Obtener el contenedor existente del video
+            var videoContainer = document.getElementById('video-container');
+            if (videoContainer) {
+                // Reemplazar el video existente con el nuevo video
+                videoContainer.innerHTML = '';
+                videoContainer.appendChild(newVideo);
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1 class="title">GIMNASIO</h1>
+
+    <div class="sections">
+        <div class="section section-blue" id="press-banca" onclick="hideSections('press-banca')">
+            <h2 style="color: black;">PRESS BANCA</h2>
+            <p style="color: black;">Contenido relacionado con Press Banca...</p>
+        </div>
+
+        <div class="section section-red" id="press-militar" onclick="hideSections('press-militar')">
+            <h2 style="color: black;">PRESS MILITAR</h2>
+            <p style="color: black;">Contenido relacionado con Press Militar...</p>
+        </div>
+
+        <div class="section section-green" id="hip-thrust" onclick="hideSections('hip-thrust')">
+            <h2 style="color: black;">HIP THRUST</h2>
+            <p style="color: black;">Contenido relacionado con Hip Thrust...</p>
+        </div>
+
+        <div class="section section-yellow" id="biceps" onclick="hideSections('biceps')">
+            <h2 style="color: black;">BICEPS</h2>
+            <!-- Por defecto, mostrar el contenido relacionado en la página principal -->
+            <p style="color: black;">Contenido relacionado con Biceps...</p>
+            <div id="video-overlay">
+                <b><p id="video-overlay-text">Biceps</p></b>
+                <p class="play-video-link" onclick="playBicepsVideo()">Ver Video</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="comeback" onclick="redirectToHome()">
+        <button>↩</button>
+    </div>
+
+    <script>
+        function redirectToHome() {
+            window.location.href = 'home.html';
+        }
+    </script>
+
+    <div class="video-container" id="video-container">
+        <!-- Contenedor para el video de ".mp4" -->
+    </div>
+</body>
+
+</html>
