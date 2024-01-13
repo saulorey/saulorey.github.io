@@ -63,9 +63,10 @@ body {
     cursor: pointer;
 }
 
-.video-container {
+#video-container {
     margin-top: 20px;
-    /* Agregado margen superior para separar el video del recuadro */
+    margin-bottom: 70px; /* Ajusta el margen inferior según sea necesario */
+    /* Agregado margen superior e inferior para separar el video del recuadro y del footer */
 }
 
 #video-overlay {
